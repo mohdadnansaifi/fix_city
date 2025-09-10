@@ -68,13 +68,22 @@ However, reporting these issues is **difficult, slow, and lacks transparency**. 
 
 ---
 
-## 📷 Screenshots
+## 📷 Screenshots  
 
-| Citizen App                              | Authority Dashboard                                  | Issue Tracking                                     |
-| ---------------------------------------- | ---------------------------------------------------- | -------------------------------------------------- |
-| ![App Screenshot](./screenshots/app.png) | ![Dashboard Screenshot](./screenshots/dashboard.png) | ![Tracking Screenshot](./screenshots/tracking.png) |
 
-> *(Add your actual app/dashboard screenshots inside a `screenshots/` folder in your repo and update the links above.)*
+<p align="center">
+  <img src="./Screenshots/Image_1.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_2.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_3.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_4.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_5.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_6.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_7.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_8.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_9.jpg" alt="Citizen App" width="250"/>
+  
+</p>
+
 
 ---
 
