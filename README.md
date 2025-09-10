@@ -73,11 +73,11 @@ However, reporting these issues is **difficult, slow, and lacks transparency**. 
 
 <p align="center">
   <img src="./Screenshots/Image_1.jpg" alt="Citizen App" width="250"/>
-  <img src="./Screenshots/Image_2.jpg" alt="Citizen App" width="250"/>
   <img src="./Screenshots/Image_3.jpg" alt="Citizen App" width="250"/>
-  <img src="./Screenshots/Image_4.jpg" alt="Citizen App" width="250"/>
-  <img src="./Screenshots/Image_5.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_2.jpg" alt="Citizen App" width="250"/>
   <img src="./Screenshots/Image_6.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_5.jpg" alt="Citizen App" width="250"/>
+  <img src="./Screenshots/Image_4.jpg" alt="Citizen App" width="250"/>
   <img src="./Screenshots/Image_7.jpg" alt="Citizen App" width="250"/>
   <img src="./Screenshots/Image_8.jpg" alt="Citizen App" width="250"/>
   <img src="./Screenshots/Image_9.jpg" alt="Citizen App" width="250"/>
