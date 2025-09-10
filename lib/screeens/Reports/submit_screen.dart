@@ -260,9 +260,9 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
                       setState(() {
                         descriptionController.clear();
                         selectedCategory=null;
-                        Navigator.pushNamed(context,'/bottomNavigation');
                       }
                       );
+                      Navigator.pushNamed(context,'/bottomNavigation');
                     },
                     child: Text('Submit Report'),
                   ),
