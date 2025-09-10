@@ -1,16 +1,102 @@
-# fix_city
+# 🏙️ Fix City – Crowdsourced Civic Issue Reporting and Resolution System
 
-A new Flutter project.
+### Team Technovengers | Smart India Hackathon 2025
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📑 Hackathon Details
 
-A few resources to get you started if this is your first Flutter project:
+* **Problem Statement ID:** SIH25031
+* **Theme:** Clean & Green Technology
+* **PS Category:** Software
+* **Team Name:** Technovengers
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📌 Problem Statement
+
+Citizens face daily civic issues such as:
+
+* 🚧 Potholes
+* 🗑️ Overflowing garbage
+* 💡 Broken streetlights
+
+However, reporting these issues is **difficult, slow, and lacks transparency**. Municipal authorities struggle with **real-time tracking, prioritization, and accountability**. There is **no single platform** that connects citizens and authorities effectively.
+
+---
+
+## 💡 Proposed Solution
+
+**Fix City** is a mobile-first solution that empowers citizens to report civic issues directly to municipal authorities with:
+
+* 📍 **Geo-tagging (GPS + Google Maps)**
+* 📸 **Photo evidence upload**
+* 🗂️ **Category selection** (waste, roads, streetlights, etc.)
+* 🔔 **Real-time push notifications** to keep users updated
+* 👥 **Authority dashboard** for issue tracking and resolution
+
+---
+
+## ✨ Key Features
+
+* 📍 **Google Maps API Integration** – precise issue location tagging
+* 📸 **Photo-based issue reporting**
+* 🔔 **Real-time notifications** (Firebase Cloud Messaging)
+* 👥 **Citizen–authority interaction** with status tracking
+* 📊 **Dashboard for authorities** to manage, track, and resolve issues
+
+---
+
+## 🛠️ Technology Stack
+
+* **Frontend:** Flutter
+* **Backend:** Firebase (Authentication, Realtime Database, Cloud Functions)
+* **APIs:** Google Maps API, Geolocation Services
+* **Notifications:** Firebase Cloud Messaging
+* **Dashboard (Web App):** Firebase
+
+---
+
+## 🔄 Workflow
+
+1. User registers/login via **Firebase Authentication**
+2. User **reports an issue** (Photo + Location + Category)
+3. Data stored in **Firebase Realtime Database**
+4. Concerned authority is **notified automatically** (based on location mapping)
+5. Status updates: **Under Review → In Progress → Resolved**
+6. Citizen provides **feedback** after resolution
+
+---
+
+## 📷 Screenshots
+
+| Citizen App                              | Authority Dashboard                                  | Issue Tracking                                     |
+| ---------------------------------------- | ---------------------------------------------------- | -------------------------------------------------- |
+| ![App Screenshot](./screenshots/app.png) | ![Dashboard Screenshot](./screenshots/dashboard.png) | ![Tracking Screenshot](./screenshots/tracking.png) |
+
+> *(Add your actual app/dashboard screenshots inside a `screenshots/` folder in your repo and update the links above.)*
+
+---
+
+## 🌍 Impact
+
+* ✅ Faster resolution of civic issues
+* ✅ Transparency & accountability in governance
+* ✅ Citizens empowered with an active voice
+* ✅ Data-driven planning for municipalities
+* ✅ Cleaner, greener, and more livable cities
+
+---
+
+## 🚀 Future Enhancements
+
+* 🤖 **AI-based image recognition** for auto-categorization
+* 🎮 **Gamification & rewards** for active reporters
+* 🏳️ **Multilingual support** for wider accessibility
+* 📊 **Integration with Swachh Bharat Mission dashboards**
+
+---
+
+## 👥 Team Technovengers
+
+**Fix City – A solution crafted by Team Technovengers for Smart India Hackathon 2025**
