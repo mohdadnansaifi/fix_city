@@ -2,7 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class UserReportsScreen extends StatelessWidget {
+class UserReportsScreen extends StatefulWidget {
+  @override
+  State<UserReportsScreen> createState() => _UserReportsScreenState();
+}
+
+class _UserReportsScreenState extends State<UserReportsScreen> {
   @override
   Widget build(BuildContext context) {
     final currentUser = FirebaseAuth.instance.currentUser;
@@ -16,18 +21,23 @@ class UserReportsScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color(0xFFF0FDF4),
-      appBar: AppBar(title: Text("Your Reports")),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+          title: Text("Your Reports"),
+        centerTitle: true,
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection('issue_reports')
-            .where('userId', isEqualTo: currentUser.uid)
+            .where('userId', isEqualTo: currentUser.email)
             .orderBy('timestamp', descending: true)
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
+            print("Error loading reports: ${snapshot.error}");
             return Center(child: Text("Error loading reports"));
           }
-          if (!snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           }
           if (snapshot.data!.docs.isEmpty) {
@@ -61,7 +71,9 @@ class UserReportsScreen extends StatelessWidget {
                       Text("Status: $status"),
                       Text("Address: $address"),
                       Text("Coordinates: $latitude, $longitude"),
-                      Text("Reported on: ${timestamp != null ? timestamp.toDate().toLocal().toString() : 'N/A'}"),
+                      Text(
+                        "Reported on: ${timestamp != null ? timestamp.toDate().toLocal().toString() : 'N/A'}",
+                      ),
                     ],
                   ),
                 ),

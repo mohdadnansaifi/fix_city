@@ -29,6 +29,7 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xffeffff3),
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.green,

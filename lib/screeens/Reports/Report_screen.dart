@@ -16,6 +16,7 @@ class _createReportScreenState extends State<createReportScreen> {
   Position? _currentPosition;
   GoogleMapController? _mapController;
   String _address='';
+  bool _isloading=false;
 
   final ImagePicker _picker = ImagePicker();
 
@@ -92,26 +93,30 @@ class _createReportScreenState extends State<createReportScreen> {
 
     // Get position
     try {
+        setState(() {
+          _isloading = true;  // Loading start here
+        });
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
       setState(() {
+
         _currentPosition = position;
       });
-      if (_mapController != null) {
         String fetchedAddress = await getAddressFromLatLng(position.latitude, position.longitude);
+      if (_mapController != null) {
         print("Address${fetchedAddress}");
-        setState(() {
-          _currentPosition = position;
-          _address = fetchedAddress;
-        });
-
         _mapController!.animateCamera(
           CameraUpdate.newLatLng(
             LatLng(position.latitude, position.longitude),
-    ),
+          ),
         );
       }
+        setState(() {
+          _currentPosition = position;
+          _address = fetchedAddress;
+          _isloading=false;
+        });
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error getting location: $e')),
@@ -210,19 +215,44 @@ class _createReportScreenState extends State<createReportScreen> {
                     icon: Icon(Icons.camera_alt_outlined,color: Colors.black,),
                     label: Text('Take Photo',style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),),
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size(300,40),
-                      backgroundColor: Color(0xffdbeafe),
-                    )
+                      backgroundColor: Color(0xffc6e0ff),// solid green color
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      elevation: 4,
+                      shadowColor: Colors.greenAccent.withOpacity(0.3),
+                      foregroundColor: Colors.white,
+                    ),
                   ),
                 ),
+                SizedBox(height: 10,),
                 Center(
                   child: ElevatedButton.icon(
                     onPressed: _pickImageFromGallery,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(
+                        0xFF11D452,
+                      ), // solid green color
+                      padding: EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      textStyle: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      elevation: 2,
+                      shadowColor: Colors.greenAccent.withOpacity(0.3),
+                      foregroundColor: Colors.white,
+                    ),
                     icon: Icon(Icons.file_upload_outlined,color: Colors.white,),
                     label: Text('Upload Photo',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: Size(300,40),
-                      )
+
                   ),
                 ),
             SizedBox(height: 10),
@@ -239,8 +269,27 @@ class _createReportScreenState extends State<createReportScreen> {
             Center(
               child: ElevatedButton.icon(
                 onPressed: _getCurrentLocation,
+                  style: ElevatedButton.styleFrom(
+                backgroundColor: Color(
+                0xFF11D452,
+              ), // solid green color
+              padding: EdgeInsets.symmetric(vertical: 16),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              textStyle: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+              elevation: 4,
+              shadowColor: Colors.greenAccent.withOpacity(0.3),
+              foregroundColor: Colors.white,
+            ),
                 icon: Icon(Icons.my_location),
-                label: Text('Get Current Location'),
+                label: _isloading?SizedBox(
+                  width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(color: Colors.white,)): Text('Get Current Location'),
               ),
             ),
             SizedBox(height: 10),
@@ -276,9 +325,28 @@ class _createReportScreenState extends State<createReportScreen> {
             ),
             SizedBox(height: 20),
             Center(
-              child: ElevatedButton(
-                onPressed: _onNext,
-                child: Text('Next'),
+              child: Card(
+                elevation: 10,
+                child: ElevatedButton(
+                  onPressed: _onNext,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(
+                      0xFF11D452,
+                    ), // solid green color
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    textStyle: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    elevation: 4,
+                    shadowColor: Colors.greenAccent.withOpacity(0.3),
+                    foregroundColor: Colors.white,
+                  ),
+                  child: Text('Next'),
+                ),
               ),
             ),
           ],

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:geocoding/geocoding.dart';
 
 class ReportIssueScreen extends StatefulWidget {
@@ -22,6 +23,7 @@ class ReportIssueScreen extends StatefulWidget {
 class _ReportIssueScreenState extends State<ReportIssueScreen> {
   final _formKey = GlobalKey<FormState>();
   String? userId;
+  String? nagarNIgam;
 
   final List<String> categories = [
     'Pothole',
@@ -48,7 +50,22 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
     _address = await getAddressFromLatLng(widget.latitude, widget.longitude);
     setState(() {});  // state update karne ke liye
   }
+ //convert lat , long to city
+  Future<String> getCityFromLatLng(double latitude, double longitude) async {
+    try {
+      List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
+      if (placemarks.isNotEmpty) {
+        Placemark place = placemarks[0];
+        return place.locality ?? "City not found";
+      }
+    } catch (e) {
+      print("Error in reverse geocoding: $e");
+    }
+    return "City not found";
+  }
 
+
+  //convert latitude , londtidude to address
   Future<String> getAddressFromLatLng(double latitude, double longitude) async {
     try {
       List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
@@ -66,6 +83,7 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
   Future<void> fetchAndStoreUserEmail() async {
     try {
       User? user = FirebaseAuth.instance.currentUser;
+      print("User: $user");
       if (user != null && user.email != null) {
         userId = user.email;  // Email ko userId me store kar rahe hain
       } else {
@@ -93,6 +111,7 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
     await issueReports.add({
        'userId':userId,
       'category': category,
+      'description':description,
       'location': {
         'latitude': latitude,
         'longitude': longitude,
@@ -142,6 +161,49 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> sendReportEmail() async {
+      if (selectedCategory == null) {
+        print('Please select a category');
+        return;
+      }
+
+      String city = await getCityFromLatLng(widget.latitude, widget.longitude);
+      String? nagarNigamEmail = await fetchNagarNigamEmail(city);
+
+      if (nagarNigamEmail == null) {
+        print('Nagar Nigam Email not found for city $city');
+        return;
+      }
+
+      final String emailBody = """
+           Issue Description:
+           ${descriptionController.text}
+
+            Location Details:
+            Latitude: ${widget.latitude}
+            Longitude: ${widget.longitude}
+            Address: ${_address ?? 'Address not found'}
+            """;
+
+      final Email email = Email(
+        body: emailBody,
+        subject: selectedCategory!,
+        recipients: [nagarNigamEmail],
+        cc: [],
+        bcc: [],
+        attachmentPaths: [widget.photoPath],
+        isHTML: false,
+      );
+
+
+      try {
+        await FlutterEmailSender.send(email);
+        print('Email sent to $nagarNigamEmail');
+      } catch (e) {
+        print('Error sending email: $e');
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Issue Details',style: TextStyle(fontWeight: FontWeight.bold,),),
@@ -191,8 +253,10 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
                 SizedBox(height: 30),
                 Center(
                   child: ElevatedButton(
-                    onPressed: (){
+                    onPressed: ()async{
                       submitIssue();
+                      await sendReportEmail();
+
                       setState(() {
                         descriptionController.clear();
                         selectedCategory=null;
