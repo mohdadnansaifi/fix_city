@@ -6,7 +6,7 @@
 
     <application
         android:enableOnBackInvokedCallback="true"
-        android:label="fix_city"
+        android:label="Fix City"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data

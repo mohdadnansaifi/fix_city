@@ -55,22 +55,8 @@ class _getStartedpageState extends State<getStartedpage>
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      FadeTransition(
-                        opacity: _opacityAnimation,
-                        child: Container(
-                          width: imageSize,
-                          height: imageSize,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: NetworkImage(
-                                  'https://lh3.googleusercontent.com/aida-public/AB6AXuCuOfTHbt3fQSQLrj1Y4I74ITYZCKUZhtB22lafifwPB0giBd20RTe7hWb42sIEuKw7sJAHCIA6PfLOuWcsjVMxic5gW9k-DWoA0WzqUkBgNwWF7F5zmDKZTzsP1Sa9FkPdAr3NUXlESsQbLvCyFQw5MW8xfG7Pl68NnQOAOV-mkk0r76yceHjernZb_RRjHVTIJDdevgu3iDzchqajuXPDEmz_mgsRjEt5vWbsjHBalJlDulxcOv4MPD8eZzfaoZZ2VQ8Z4NmLM24'),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 24),
+                      Ink.image(image: AssetImage('assets/unnamed.png'),height: 300,width: 300,),
+                      SizedBox(height: 20),
                       Text(
                         "Make Your City Better",
                         textAlign: TextAlign.center,
@@ -82,7 +68,7 @@ class _getStartedpageState extends State<getStartedpage>
                           height: 1.2,
                         ),
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 10),
                       Text(
                         "Spot an issue? Report it in seconds. From potholes to broken streetlights, your reports help us take action.",
                         textAlign: TextAlign.center,
@@ -97,8 +83,8 @@ class _getStartedpageState extends State<getStartedpage>
                   ),
                 ),
               ),
-              SizedBox(
-                width: double.infinity,
+              Card(
+                elevation: 15,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/login');
@@ -106,12 +92,12 @@ class _getStartedpageState extends State<getStartedpage>
                   style: ElevatedButton.styleFrom(
                     foregroundColor: textPrimary,
                     padding:
-                    EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+                    EdgeInsets.symmetric(vertical: 14, horizontal: 20),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
 
-                    elevation: 8,
+                    // elevation: 8,
                   ),
                   child: Text(
                     "Get Started",

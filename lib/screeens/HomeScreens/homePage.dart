@@ -58,7 +58,7 @@ class FixCityHomeScreen extends StatelessWidget {
                   children: [
                     // Background illustration (with opacity)
                     Lottie.asset(
-                      'assets/animations/Hello.json',
+                      'assets/animations/Eco-friendly city.json',
                       width: 300,
                       height: 300,
                       fit: BoxFit.fill,

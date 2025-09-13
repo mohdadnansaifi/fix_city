@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:geocoding/geocoding.dart';
 
+import 'confermation_screen.dart';
+
 class ReportIssueScreen extends StatefulWidget {
   final String photoPath;
   final double latitude;
@@ -252,19 +254,41 @@ class _ReportIssueScreenState extends State<ReportIssueScreen> {
                 ),
                 SizedBox(height: 30),
                 Center(
-                  child: ElevatedButton(
-                    onPressed: ()async{
-                      submitIssue();
-                      await sendReportEmail();
-
-                      setState(() {
-                        descriptionController.clear();
-                        selectedCategory=null;
-                      }
-                      );
-                      Navigator.pushNamed(context,'/bottomNavigation');
-                    },
-                    child: Text('Submit Report'),
+                  child: Card(
+                    elevation: 10,
+                    child: ElevatedButton(
+                      onPressed: ()async{
+                        submitIssue();
+                        await sendReportEmail();
+                    
+                        setState(() {
+                          descriptionController.clear();
+                          selectedCategory=null;
+                        }
+                        );
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (_) => SuccessScreen()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(
+                          0xFF11D452,
+                        ), // solid green color
+                        padding: EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        textStyle: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        shadowColor: Colors.greenAccent.withOpacity(0.3),
+                        foregroundColor: Colors.white,
+                      ),
+                    
+                      child: Text('Submit Report'),
+                    ),
                   ),
                 )
               ],

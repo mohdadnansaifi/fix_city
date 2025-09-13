@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:lottie/lottie.dart';
 class loginScreen extends StatefulWidget {
   @override
   State<loginScreen> createState() => _loginScreenState();
@@ -111,24 +112,17 @@ class _loginScreenState extends State<loginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // Circular icon background with Material icon
-                      Container(
-                        width: 96,
-                        height: 96,
-                        decoration: BoxDecoration(
-                          color: primary100,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: Icon(
-                            Icons.eco_outlined,
-                            size: 48,
-                            color: primary500,
-                          ),
+                      Center(
+                        child: Lottie.asset(
+                          'assets/animations/Hello.json',
+                          width: 300,
+                          height: 300,
+                          fit: BoxFit.fill,
                         ),
                       ),
                       SizedBox(height: 24),
                       Text(
-                        'Welcome to Clean & Green',
+                        'Welcome to Fix City',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 28,
