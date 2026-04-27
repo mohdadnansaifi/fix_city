@@ -40,12 +40,16 @@ dependencies:
   flutter_signin_button: ^2.1.1
   google_sign_in: ^7.1.1
   firebase_core: ^4.0.0
-  firebase_storage: any
   firebase_app_check: any
   cloud_firestore: ^6.0.1
   lottie: ^3.3.2
   intl: ^0.20.2
   flutter_launcher_icons: ^0.14.4
+  provider: ^6.1.5+1
+  shared_preferences: ^2.5.5
+  http: ^1.6.0
+  firebase_messaging: ^16.2.0
+  flutter_local_notifications: ^21.0.0
 
 dev_dependencies:
   flutter_test:
